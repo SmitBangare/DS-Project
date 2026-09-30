@@ -8,6 +8,7 @@ Decisions taken after the master plan, and what each one changes. Newest first.
 
 **Date:** 2026-09-30 (recommendation revised the same day, see below)
 **Decision:** The co-founder is buying a **new number** for the business WhatsApp account. His personal number is not migrated.
+**Status:** Adopted in master plan v2: new number on the WhatsApp Business app on a **company phone**, connected via Coexistence (Option B below). Open: who keeps the company phone day to day. See [MASTER_PLAN_V2_REVIEW.md](MASTER_PLAN_V2_REVIEW.md).
 **Resolves:** Master plan open decision "Migrate the co-founder's number (Coexistence) or start a new business number?"
 
 ### Sub-decision: how the new number is used
