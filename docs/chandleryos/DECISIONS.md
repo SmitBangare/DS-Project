@@ -6,49 +6,52 @@ Decisions taken after the master plan, and what each one changes. Newest first.
 
 ## D-001 · New dedicated WhatsApp business number
 
-**Date:** 2026-09-30
+**Date:** 2026-09-30 (recommendation revised the same day, see below)
 **Decision:** The co-founder is buying a **new number** for the business WhatsApp account. His personal number is not migrated.
 **Resolves:** Master plan open decision "Migrate the co-founder's number (Coexistence) or start a new business number?"
 
-### Sub-decision to confirm: how the new number is used
+### Sub-decision: how the new number is used
 
-| | **Option A: Cloud API only (recommended)** | Option B: Business app + Coexistence |
+| | Option A: Cloud API only | **Option B: Business app now, Coexistence later (recommended)** |
 |---|---|---|
-| Where chats happen | Only inside ChandleryOS (inbox works on phone and laptop) | WhatsApp Business app on a phone **and** ChandleryOS |
-| Meta onboarding | Standard Cloud API setup with Tech Shipping's own Meta app; no Coexistence / Embedded Signup | Coexistence via Embedded Signup (Tech Provider setup or a BSP) |
-| "Phone must stay active" risk | None | Link can drop if the app isn't opened regularly or the phone changes |
-| Bot and human in the same chat | No clash: everyone works in one inbox | Co-founder and system both reply; risk of crossed messages |
-| Record of conversations | Complete by design | Messages sent from the phone arrive as echoes; must be handled |
-| Downside | The number can't be used in the WhatsApp app at all; the team must reply from ChandleryOS | More moving parts, more to break |
+| Where chats happen | Only inside ChandleryOS | WhatsApp Business app on the co-founder's phone **and**, once connected, ChandleryOS |
+| Usable from day one | **No**: the number is useless until the ChandleryOS inbox is built (Sprint 2, weeks 4–6) | **Yes**: works on the phone the day it's bought |
+| If ChandleryOS is down or buggy | The business can't talk to clients | The phone app keeps working |
+| Meta onboarding | Standard Cloud API setup | Coexistence via Embedded Signup (Tech Provider setup or a BSP) |
+| Risks | Replaces the co-founder's main work tool with new software on day one | Link can drop if the app isn't opened regularly or the phone changes; co-founder and system both reply in the same chat; phone-sent messages arrive as echoes |
 
-**Recommendation: Option A.** A fresh number has no chat history to preserve, so Coexistence's main benefit disappears, while its risks remain. Option A is simpler to build and more reliable.
+**Recommendation: Option B.** All client requirements arrive on WhatsApp and email, and WhatsApp on the phone is how the co-founder works. That tool must keep working from the day the number is bought, and independently of ChandleryOS. Option A was recommended first for technical simplicity, but it makes the business depend on software that won't exist until Sprint 2 and that is still being proven. Option B keeps WhatsApp as it is and adds the system alongside it.
 
-(verify) Confirm against current Meta documentation during setup: a number registered on the Cloud API only cannot be used in the WhatsApp or WhatsApp Business app at the same time.
+### Plan
+
+1. **Now (Week 0):** buy the number, install **WhatsApp Business** (not regular WhatsApp) on the co-founder's phone, set up the business profile (name, logo, address, email), and start using it with clients. Start Meta Business verification.
+2. **Sprint 2:** connect the number to ChandleryOS through Coexistence. From then on every message also lands in the system.
+3. **Test the Coexistence route early,** with a spare number, in Week 0 or Sprint 1: either Tech Shipping's own Meta app registered as a Tech Provider, or a BSP (Gupshup, Interakt, etc.). Keep the WhatsApp code behind one small module so switching is cheap.
+4. **Later, optional:** once the team trusts the ChandleryOS inbox, the co-founder may reply from there more and from the phone less. No switch-over is forced.
+
+(verify) during setup, against current Meta documentation:
+- Coexistence onboarding may require the number to have been active on the Business app for some time first. Using the number from day one satisfies this naturally.
+- Which Business app features stop working after Coexistence is connected (e.g. some linked-device, broadcast or disappearing-message features).
+- The rule on how often the phone app must be opened to keep the link alive.
 
 ### What changes in the plan
 
-**Removed or simplified**
-- Coexistence onboarding, the Tech Provider / Embedded Signup question, and the "direct vs BSP" check (MASTER_PLAN_REVIEW §6) no longer apply under Option A.
-- Risks removed: "WhatsApp link drops on phone change" and echo-message handling.
-- No old chat history to import.
+**Kept from the master plan:** Coexistence, echo-message handling, the "link dropped" alert, and the rule that the system never messages clients on its own while the co-founder is chatting (the bot drafts; people send).
 
-**New or raised in priority**
-1. **The ChandleryOS inbox becomes the co-founder's WhatsApp.** It must be good on a phone: fast, with image/PDF preview, reply box, attachment upload and **new-message notifications** (browser push or at least an alert/sound). Plan this as a Sprint 2 must-have, not a nice-to-have.
-2. **The 24-hour rule matters more.** Replies after 24 hours of client silence need approved templates. Draft a generic "follow-up on your inquiry" utility template in Week 0 so the team is never stuck.
-3. **Transition period.** Clients will keep sending lists to the personal number for weeks or months.
-   - Announce the new number **from the personal number** (a normal personal message or broadcast, free, no Meta rules) and on email signatures, quotations and invoices.
-   - Staff can **forward** a list received on the personal number to the business number. ChandleryOS should let staff mark such a message "forwarded on behalf of <client>" so the inquiry is linked to the right client, not to the co-founder.
-   - The email path (IMAP) still works for everything.
-4. **Clients must message first, or opt in.** The new number cannot freely start conversations with clients who never contacted it. Business-initiated messages need an approved template and client opt-in (verify current Meta policy).
-5. **Messaging limits.** A new number starts with a limit on business-initiated conversations per day, which rises with verification and good quality (verify current tiers). Not an issue for normal volume; avoid bulk announcements from the new number.
+**New or different because it's a new number**
+1. **Transition period.** Clients will keep sending lists to the personal number for weeks or months.
+   - Announce the new number **from the personal number** (a normal message or broadcast list, no Meta rules) and on email signatures, quotations and invoices.
+   - Staff can **forward** lists received on the personal number to the business number. ChandleryOS should let staff mark such a message "forwarded on behalf of <client>", so the inquiry is linked to the right client, not to the co-founder.
+2. **No old chat history** on the new number, so nothing to import. Past supply lists for the AI test set come from the personal number's chats (export or screenshots).
+3. **Email stays a first-class channel.** It works from Sprint 2 regardless of WhatsApp status, and is the fallback if Meta onboarding is delayed.
 
 **Number requirements (Week 0)**
-- The number must be able to receive an SMS or voice call for verification (a landline works with voice).
-- It must **not** already be registered on WhatsApp. If it was, delete that WhatsApp account first.
+- The number must be able to receive an SMS or voice call for verification.
+- It must **not** already be registered on WhatsApp. If it was, delete that account first.
 - Keep the SIM/number in the **company's name** and keep it active (recharged).
-- Display name must match the business (e.g. "Tech Shipping"); Meta reviews it.
+- Business profile name should match the company (e.g. "Tech Shipping").
 - Meta Business verification of Tech Shipping is still required.
 
 **Documents to update**
-- Master plan: WhatsApp section, migration steps, risks table, open decisions.
+- Master plan: WhatsApp migration steps (new number instead of converting the personal one), open decisions.
 - Staff guide ("For clients, nothing changes" is no longer true): tell staff about the new number and the forwarding rule.
