@@ -5,7 +5,7 @@ Reviewed documents (copies in `source/`):
 - *Tech Shipping Operations Automation — Final Master Plan* (18 pages, Sep 29, 2026)
 - *Our New Operations System — A Simple Guide* (6 pages, staff-facing)
 
-Earlier review of the first project document: [ANALYSIS.md](ANALYSIS.md).
+Earlier review of the first project document: [ANALYSIS.md](ANALYSIS.md). Later decisions (e.g. the new WhatsApp number): [DECISIONS.md](DECISIONS.md).
 
 > Tax, legal and Meta-platform points are marked **(verify)** where they need confirmation from the CA or current Meta documentation. They are open questions, not facts.
 
